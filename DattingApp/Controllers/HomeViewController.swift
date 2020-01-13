@@ -10,9 +10,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
     let topStackView = TopNavigationStackView()
-    let cardView = UIView()
+    let cardDeckView = UIView()
     let buttomStackView = HomeBottomControlsStackView()
-
+    var cardVM: [CardViewModelConvertable] = [Advertiser(title: "Some long text", slogan: "Some text", photoImageName: "lady5c"),
+                  User(name: "Nika", profesion: "Designer", age: 18, imageName: "lady5c"),
+                  User(name: "Jane", profesion: "Dominatrix", age: 20, imageName: "kelly1")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +23,22 @@ class HomeViewController: UIViewController {
     }
     
     fileprivate func dummyCardView() {
-        let dummyCardView = CardView()
-        self.cardView.addSubview(dummyCardView)
-        dummyCardView.fillSuperview()
+        cardVM.forEach { (card) in
+            let dummyCardView = CardView()
+            dummyCardView.cardVM = card.toCardViewModel()
+            self.cardDeckView.addSubview(dummyCardView)
+            dummyCardView.fillSuperview()
+        }
     }
 
     fileprivate func setupLayout() {
-        let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardView, buttomStackView])
+        let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardDeckView, buttomStackView])
         overallStackView.axis = .vertical
         view.addSubview(overallStackView)
         overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         overallStackView.isLayoutMarginsRelativeArrangement = true
         overallStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
-        overallStackView.bringSubviewToFront(cardView)
+        overallStackView.bringSubviewToFront(cardDeckView)
     }
 
 }

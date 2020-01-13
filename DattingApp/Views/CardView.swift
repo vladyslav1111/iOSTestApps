@@ -9,16 +9,35 @@
 import UIKit
 
 class CardView: UIView {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    let imageView = UIImageView()
+    var informationLabel: UILabel!
+    var cardVM: CardViewModel! {
+        didSet {
+            informationLabel.attributedText = cardVM.attributedString
+            informationLabel.textAlignment = cardVM.textAlign
+            imageView.image = UIImage(named: cardVM.imageName)
+        }
+    }
+    
     private var dismissXValue: CGFloat = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.informationLabel = UILabel()
+        
         layer.cornerRadius = 10
         clipsToBounds = true
+        
         self.addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
         imageView.fillSuperview()
+        
+        self.addSubview(informationLabel)
+        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+        informationLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        informationLabel.textColor = .white
+        informationLabel.numberOfLines = 0
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
     }
@@ -58,7 +77,10 @@ fileprivate extension CardView {
             }
         }) { [unowned self] (_) in
             self.transform = .identity
-            self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.size.width, height: self.superview!.frame.size.height)
+            if shouldDismissCard {
+                self.removeFromSuperview()
+            }
+            //self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.size.width, height: self.superview!.frame.size.height)
         }
     }
 }
