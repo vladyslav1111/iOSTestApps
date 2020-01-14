@@ -128,8 +128,8 @@
 			children = (
 				2123AC6323C89D0700880D9F /* ViewModels */,
 				2123AC5F23C88D9B00880D9F /* Models */,
-				21205E0D23C78ED700C24008 /* Controllers */,
 				21205E0423C75CFB00C24008 /* Views */,
+				21205E0D23C78ED700C24008 /* Controllers */,
 				21205E0123C7571100C24008 /* Extensions */,
 				21205E0E23C78EED00C24008 /* Setting */,
 			);

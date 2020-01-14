@@ -11,6 +11,7 @@ import UIKit
 class CardView: UIView {
     let imageView = UIImageView()
     var informationLabel: UILabel!
+    let gradientLayer = CAGradientLayer()
     var cardVM: CardViewModel! {
         didSet {
             informationLabel.attributedText = cardVM.attributedString
@@ -23,23 +24,14 @@ class CardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.informationLabel = UILabel()
-        
-        layer.cornerRadius = 10
-        clipsToBounds = true
-        
-        self.addSubview(imageView)
-        imageView.contentMode = .scaleAspectFill
-        imageView.fillSuperview()
-        
-        self.addSubview(informationLabel)
-        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
-        informationLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
-        informationLabel.textColor = .white
-        informationLabel.numberOfLines = 0
+        setupLayout()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
+    }
+    
+    override func layoutSubviews() {
+        gradientLayer.frame = self.frame
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,9 +41,37 @@ class CardView: UIView {
 
 // MARK: -private functions
 fileprivate extension CardView {
+    func setupLayout() {
+        self.informationLabel = UILabel()
+        
+        layer.cornerRadius = 10
+        clipsToBounds = true
+        
+        self.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFill
+        imageView.fillSuperview()
+        
+        setupGradientLayer()
+        
+        self.addSubview(informationLabel)
+        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+        informationLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        informationLabel.textColor = .white
+        informationLabel.numberOfLines = 0
+    }
+    
+    func setupGradientLayer() {
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.5, 1.1]
+        self.layer.addSublayer(gradientLayer)
+    }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
+        case .began:
+            superview?.subviews.forEach({ (subview) in
+                subview.layer.removeAllAnimations()
+            })
         case .changed:
             handleChanged(gesture)
         case .ended:
