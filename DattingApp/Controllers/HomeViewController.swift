@@ -12,20 +12,24 @@ class HomeViewController: UIViewController {
     let topStackView = TopNavigationStackView()
     let cardDeckView = UIView()
     let buttomStackView = HomeBottomControlsStackView()
-    var cardVM: [CardViewModelConvertable] = [Advertiser(title: "Some long text", slogan: "Some text", photoImageName: "lady5c"),
-                  User(name: "Nika", profesion: "Designer", age: 18, imageName: "lady5c"),
-                  User(name: "Jane", profesion: "Dominatrix", age: 20, imageName: "kelly1")]
+    let homeVM = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        topStackView.profileButton.addTarget(self, action: #selector(profileButtonPresed), for: .touchUpInside)
         setupLayout()
         dummyCardView()
     }
     
+    @objc func profileButtonPresed() {
+        let vc = RegistrationController()
+        self.present(vc, animated: true)
+    }
+    
     fileprivate func dummyCardView() {
-        cardVM.forEach { (card) in
+        homeVM.cards.forEach { (card) in
             let dummyCardView = CardView()
-            dummyCardView.cardVM = card.toCardViewModel()
+            dummyCardView.cardVM = card
             self.cardDeckView.addSubview(dummyCardView)
             dummyCardView.fillSuperview()
         }

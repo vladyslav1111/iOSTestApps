@@ -11,12 +11,24 @@ import UIKit
 class CardView: UIView {
     let imageView = UIImageView()
     var informationLabel: UILabel!
-    let gradientLayer = CAGradientLayer()
+    private let gradientLayer = CAGradientLayer()
+    private let barsStackView = UIStackView()
+    private let barDeselectedColor: UIColor = UIColor(white: 0, alpha: 0.2)
+    private let barSelectedColor: UIColor = .white
+
     var cardVM: CardViewModel! {
         didSet {
             informationLabel.attributedText = cardVM.attributedString
             informationLabel.textAlignment = cardVM.textAlign
-            imageView.image = UIImage(named: cardVM.imageName)
+            imageView.image = UIImage(named: cardVM.imageNames.first ?? "")
+            cardVM.imageNames.forEach { (_) in
+                let view = UIView()
+                view.backgroundColor = barDeselectedColor
+                barsStackView.addArrangedSubview(view)
+            }
+            barsStackView.arrangedSubviews.first?.backgroundColor = barSelectedColor
+            
+            setupIndexImageObserver()
         }
     }
     
@@ -28,6 +40,7 @@ class CardView: UIView {
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
     override func layoutSubviews() {
@@ -41,6 +54,16 @@ class CardView: UIView {
 
 // MARK: -private functions
 fileprivate extension CardView {
+    func setupIndexImageObserver() {
+        cardVM.indexImageObserver = { [weak self] (image, index) in
+            self?.imageView.image = image
+            self?.barsStackView.arrangedSubviews.forEach { (view) in
+                view.backgroundColor = self?.barDeselectedColor
+            }
+            self?.barsStackView.arrangedSubviews[index].backgroundColor = self?.barSelectedColor
+        }
+    }
+    
     func setupLayout() {
         self.informationLabel = UILabel()
         
@@ -51,6 +74,7 @@ fileprivate extension CardView {
         imageView.contentMode = .scaleAspectFill
         imageView.fillSuperview()
         
+        setupBarsStackView()
         setupGradientLayer()
         
         self.addSubview(informationLabel)
@@ -58,6 +82,13 @@ fileprivate extension CardView {
         informationLabel.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+    }
+    
+    func setupBarsStackView() {
+        self.addSubview(barsStackView)
+        barsStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
+        barsStackView.spacing = 4
+        barsStackView.distribution = .fillEqually
     }
     
     func setupGradientLayer() {
@@ -81,6 +112,16 @@ fileprivate extension CardView {
         }
     }
     
+    @objc func handleTap(gesture: UITapGestureRecognizer) {
+        let tapLocation = gesture.location(in: nil)
+        let shouldAdvanceNextPhoto = tapLocation.x > self.frame.width / 2 ? true : false
+        if shouldAdvanceNextPhoto {
+            cardVM.advanceToNextPhoto()
+        } else {
+            cardVM.goToPreviosPhoto()
+        }
+    }
+    
     func handleChanged(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: nil)
         self.transform = CGAffineTransform(translationX: translation.x, y: translation.y).rotated(by: translation.x/frame.size.width/3)
@@ -100,7 +141,6 @@ fileprivate extension CardView {
             if shouldDismissCard {
                 self.removeFromSuperview()
             }
-            //self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.size.width, height: self.superview!.frame.size.height)
         }
     }
 }

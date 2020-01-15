@@ -12,10 +12,12 @@
 		21205E0823C7654A00C24008 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21205E0723C7654A00C24008 /* TopNavigationStackView.swift */; };
 		21205E0A23C7744300C24008 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21205E0923C7744300C24008 /* CardView.swift */; };
 		21205E0C23C78EAA00C24008 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21205E0B23C78EAA00C24008 /* HomeViewController.swift */; };
-		21205E1023C796E500C24008 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21205E0F23C796E500C24008 /* Default-568h@2x.png */; };
 		2123AC6123C88DAA00880D9F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6023C88DAA00880D9F /* User.swift */; };
 		2123AC6523C89D1A00880D9F /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6423C89D1A00880D9F /* CardViewModel.swift */; };
 		2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6623C8AA3800880D9F /* Advertiser.swift */; };
+		217ADFC423CF13B400DEE443 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC323CF13B400DEE443 /* HomeViewModel.swift */; };
+		217ADFC623CF331500DEE443 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC523CF331500DEE443 /* RegistrationController.swift */; };
+		217ADFC823CF334700DEE443 /* RegistrationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC723CF334700DEE443 /* RegistrationTextField.swift */; };
 		219A6FD423C6318600DCB91E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219A6FD323C6318600DCB91E /* AppDelegate.swift */; };
 		219A6FD923C6318600DCB91E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FD723C6318600DCB91E /* Main.storyboard */; };
 		219A6FDB23C6318800DCB91E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FDA23C6318800DCB91E /* Assets.xcassets */; };
@@ -28,10 +30,12 @@
 		21205E0723C7654A00C24008 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		21205E0923C7744300C24008 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		21205E0B23C78EAA00C24008 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		21205E0F23C796E500C24008 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2123AC6023C88DAA00880D9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2123AC6423C89D1A00880D9F /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		2123AC6623C8AA3800880D9F /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		217ADFC323CF13B400DEE443 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		217ADFC523CF331500DEE443 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		217ADFC723CF334700DEE443 /* RegistrationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextField.swift; sourceTree = "<group>"; };
 		219A6FD023C6318600DCB91E /* DattingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DattingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219A6FD323C6318600DCB91E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		219A6FD823C6318600DCB91E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 				21205E0523C75D2D00C24008 /* HomeBottomControlsStackView.swift */,
 				21205E0723C7654A00C24008 /* TopNavigationStackView.swift */,
 				21205E0923C7744300C24008 /* CardView.swift */,
+				217ADFC723CF334700DEE443 /* RegistrationTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -73,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				21205E0B23C78EAA00C24008 /* HomeViewController.swift */,
+				217ADFC523CF331500DEE443 /* RegistrationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				2123AC6423C89D1A00880D9F /* CardViewModel.swift */,
+				217ADFC323CF13B400DEE443 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -109,7 +116,6 @@
 		219A6FC723C6318600DCB91E = {
 			isa = PBXGroup;
 			children = (
-				21205E0F23C796E500C24008 /* Default-568h@2x.png */,
 				219A6FD223C6318600DCB91E /* DattingApp */,
 				219A6FD123C6318600DCB91E /* Products */,
 			);
@@ -195,7 +201,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				219A6FDE23C6318800DCB91E /* LaunchScreen.storyboard in Resources */,
-				21205E1023C796E500C24008 /* Default-568h@2x.png in Resources */,
 				219A6FDB23C6318800DCB91E /* Assets.xcassets in Resources */,
 				219A6FD923C6318600DCB91E /* Main.storyboard in Resources */,
 			);
@@ -210,9 +215,12 @@
 			files = (
 				21205E0623C75D2D00C24008 /* HomeBottomControlsStackView.swift in Sources */,
 				219A6FD423C6318600DCB91E /* AppDelegate.swift in Sources */,
+				217ADFC823CF334700DEE443 /* RegistrationTextField.swift in Sources */,
 				2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */,
+				217ADFC423CF13B400DEE443 /* HomeViewModel.swift in Sources */,
 				21205E0323C7577C00C24008 /* Extensions+UIView.swift in Sources */,
 				21205E0C23C78EAA00C24008 /* HomeViewController.swift in Sources */,
+				217ADFC623CF331500DEE443 /* RegistrationController.swift in Sources */,
 				2123AC6523C89D1A00880D9F /* CardViewModel.swift in Sources */,
 				21205E0A23C7744300C24008 /* CardView.swift in Sources */,
 				21205E0823C7654A00C24008 /* TopNavigationStackView.swift in Sources */,
