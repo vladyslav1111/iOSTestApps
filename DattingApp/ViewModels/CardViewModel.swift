@@ -13,7 +13,7 @@ protocol CardViewModelConvertable {
 }
 
 struct CardViewModel {
-    let imageNames: [String]
+    let imageName: String
     let attributedString: NSAttributedString
     let textAlign: NSTextAlignment
 }

@@ -16,7 +16,7 @@ class CardView: UIView {
         didSet {
             informationLabel.attributedText = cardVM.attributedString
             informationLabel.textAlignment = cardVM.textAlign
-            imageView.image = UIImage(named: cardVM.imageNames.first ?? "")
+            imageView.image = UIImage(named: cardVM.imageName)
         }
     }
     

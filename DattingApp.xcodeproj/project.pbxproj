@@ -20,8 +20,6 @@
 		219A6FD923C6318600DCB91E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FD723C6318600DCB91E /* Main.storyboard */; };
 		219A6FDB23C6318800DCB91E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FDA23C6318800DCB91E /* Assets.xcassets */; };
 		219A6FDE23C6318800DCB91E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FDC23C6318800DCB91E /* LaunchScreen.storyboard */; };
-		21DFFD7B23CDFDE6005ED43B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DFFD7A23CDFDE6005ED43B /* UserViewModel.swift */; };
-		21DFFD7D23CDFEA8005ED43B /* AdvertiserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DFFD7C23CDFEA8005ED43B /* AdvertiserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +38,6 @@
 		219A6FDA23C6318800DCB91E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		219A6FDD23C6318800DCB91E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		219A6FDF23C6318800DCB91E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		21DFFD7A23CDFDE6005ED43B /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		21DFFD7C23CDFEA8005ED43B /* AdvertiserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				2123AC6423C89D1A00880D9F /* CardViewModel.swift */,
-				21DFFD7A23CDFDE6005ED43B /* UserViewModel.swift */,
-				21DFFD7C23CDFEA8005ED43B /* AdvertiserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -215,10 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				21205E0623C75D2D00C24008 /* HomeBottomControlsStackView.swift in Sources */,
-				21DFFD7D23CDFEA8005ED43B /* AdvertiserViewModel.swift in Sources */,
 				219A6FD423C6318600DCB91E /* AppDelegate.swift in Sources */,
 				2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */,
-				21DFFD7B23CDFDE6005ED43B /* UserViewModel.swift in Sources */,
 				21205E0323C7577C00C24008 /* Extensions+UIView.swift in Sources */,
 				21205E0C23C78EAA00C24008 /* HomeViewController.swift in Sources */,
 				2123AC6523C89D1A00880D9F /* CardViewModel.swift in Sources */,

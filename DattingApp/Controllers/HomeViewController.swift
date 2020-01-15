@@ -12,11 +12,9 @@ class HomeViewController: UIViewController {
     let topStackView = TopNavigationStackView()
     let cardDeckView = UIView()
     let buttomStackView = HomeBottomControlsStackView()
-    var cardVM: [CardViewModelConvertable] = [
-        AdvertiserViewModel(advertiser: Advertiser(title: "Some long text", slogan: "Some text", imageName: "lady5c")),
-        UserViewModel(user: User(name: "Nika", profesion: "Designer", age: 18, imageNames: ["lady5c"])),
-        UserViewModel(user: User(name: "Jane", profesion: "Dominatrix", age: 20, imageNames: ["kelly1"]))
-    ]
+    var cardVM: [CardViewModelConvertable] = [Advertiser(title: "Some long text", slogan: "Some text", photoImageName: "lady5c"),
+                  User(name: "Nika", profesion: "Designer", age: 18, imageName: "lady5c"),
+                  User(name: "Jane", profesion: "Dominatrix", age: 20, imageName: "kelly1")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
