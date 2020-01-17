@@ -15,6 +15,8 @@
 		2123AC6123C88DAA00880D9F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6023C88DAA00880D9F /* User.swift */; };
 		2123AC6523C89D1A00880D9F /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6423C89D1A00880D9F /* CardViewModel.swift */; };
 		2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6623C8AA3800880D9F /* Advertiser.swift */; };
+		2125334423D1DF950091B733 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125334323D1DF950091B733 /* Validation.swift */; };
+		2125334623D1EE550091B733 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125334523D1EE550091B733 /* RegistrationViewModel.swift */; };
 		217ADFC423CF13B400DEE443 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC323CF13B400DEE443 /* HomeViewModel.swift */; };
 		217ADFC623CF331500DEE443 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC523CF331500DEE443 /* RegistrationController.swift */; };
 		217ADFC823CF334700DEE443 /* RegistrationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC723CF334700DEE443 /* RegistrationTextField.swift */; };
@@ -33,6 +35,8 @@
 		2123AC6023C88DAA00880D9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2123AC6423C89D1A00880D9F /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		2123AC6623C8AA3800880D9F /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		2125334323D1DF950091B733 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		2125334523D1EE550091B733 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		217ADFC323CF13B400DEE443 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		217ADFC523CF331500DEE443 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		217ADFC723CF334700DEE443 /* RegistrationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextField.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			children = (
 				2123AC6423C89D1A00880D9F /* CardViewModel.swift */,
 				217ADFC323CF13B400DEE443 /* HomeViewModel.swift */,
+				2125334523D1EE550091B733 /* RegistrationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 				21205E0D23C78ED700C24008 /* Controllers */,
 				21205E0123C7571100C24008 /* Extensions */,
 				21205E0E23C78EED00C24008 /* Setting */,
+				2125334323D1DF950091B733 /* Validation.swift */,
 			);
 			path = DattingApp;
 			sourceTree = "<group>";
@@ -216,7 +222,9 @@
 				21205E0623C75D2D00C24008 /* HomeBottomControlsStackView.swift in Sources */,
 				219A6FD423C6318600DCB91E /* AppDelegate.swift in Sources */,
 				217ADFC823CF334700DEE443 /* RegistrationTextField.swift in Sources */,
+				2125334623D1EE550091B733 /* RegistrationViewModel.swift in Sources */,
 				2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */,
+				2125334423D1DF950091B733 /* Validation.swift in Sources */,
 				217ADFC423CF13B400DEE443 /* HomeViewModel.swift in Sources */,
 				21205E0323C7577C00C24008 /* Extensions+UIView.swift in Sources */,
 				21205E0C23C78EAA00C24008 /* HomeViewController.swift in Sources */,
