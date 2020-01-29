@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import RxSwift
 
 protocol CardViewModelConvertable {
     func toCardViewModel() -> CardViewModel
@@ -17,18 +18,21 @@ class CardViewModel {
     let imageNames: [String]
     let attributedString: NSAttributedString
     let textAlign: NSTextAlignment
-    private var imageIndex = 0 {
-        didSet {
-            indexImageObserver?(UIImage(named: imageNames[imageIndex]), imageIndex)
-        }
+    
+    var imageIndexObservable: BehaviorSubject<Int> = BehaviorSubject(value: 0)
+    
+    func getImageAt(index: Int) -> UIImage? {
+        guard index >= 0 && index < imageNames.count else { return nil }
+        return UIImage(named: imageNames[index])
     }
-    var indexImageObserver: ((UIImage?, Int) -> Void)?
     
     func advanceToNextPhoto() {
-        imageIndex = min(imageIndex + 1, imageNames.count - 1)
+        let imageIndex: Int = (try? imageIndexObservable.value()) ?? 0
+        imageIndexObservable.onNext(min(imageIndex + 1, imageNames.count - 1))
     }
     func goToPreviosPhoto() {
-        imageIndex = max(0, imageIndex - 1)
+        let imageIndex: Int = (try? imageIndexObservable.value()) ?? 0
+        imageIndexObservable.onNext(max(0, imageIndex - 1))
     }
     
     init(user: User) {

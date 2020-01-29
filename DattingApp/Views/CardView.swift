@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class CardView: UIView {
     let imageView = UIImageView()
@@ -15,6 +16,7 @@ class CardView: UIView {
     private let barsStackView = UIStackView()
     private let barDeselectedColor: UIColor = UIColor(white: 0, alpha: 0.2)
     private let barSelectedColor: UIColor = .white
+    private let disposeBag = DisposeBag()
 
     var cardVM: CardViewModel! {
         didSet {
@@ -55,13 +57,15 @@ class CardView: UIView {
 // MARK: -private functions
 fileprivate extension CardView {
     func setupIndexImageObserver() {
-        cardVM.indexImageObserver = { [weak self] (image, index) in
-            self?.imageView.image = image
-            self?.barsStackView.arrangedSubviews.forEach { (view) in
-                view.backgroundColor = self?.barDeselectedColor
-            }
-            self?.barsStackView.arrangedSubviews[index].backgroundColor = self?.barSelectedColor
-        }
+        cardVM.imageIndexObservable
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (index) in
+                self?.imageView.image = self?.cardVM.getImageAt(index: index)
+                self?.barsStackView.arrangedSubviews.forEach { (view) in
+                    view.backgroundColor = self?.barDeselectedColor
+                }
+                self?.barsStackView.arrangedSubviews[index].backgroundColor = self?.barSelectedColor
+            }).disposed(by: disposeBag)
     }
     
     func setupLayout() {

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		219A6FD923C6318600DCB91E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FD723C6318600DCB91E /* Main.storyboard */; };
 		219A6FDB23C6318800DCB91E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FDA23C6318800DCB91E /* Assets.xcassets */; };
 		219A6FDE23C6318800DCB91E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 219A6FDC23C6318800DCB91E /* LaunchScreen.storyboard */; };
+		2DE4118064618EDFD4B888D7 /* Pods_DattingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E78953D435F1ABAC355712E4 /* Pods_DattingApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,9 @@
 		219A6FDA23C6318800DCB91E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		219A6FDD23C6318800DCB91E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		219A6FDF23C6318800DCB91E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1C85AD22C697A03EF52A641 /* Pods-DattingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DattingApp.release.xcconfig"; path = "Target Support Files/Pods-DattingApp/Pods-DattingApp.release.xcconfig"; sourceTree = "<group>"; };
+		E606B46661850B7C8DBFB2D8 /* Pods-DattingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DattingApp.debug.xcconfig"; path = "Target Support Files/Pods-DattingApp/Pods-DattingApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E78953D435F1ABAC355712E4 /* Pods_DattingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DattingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE4118064618EDFD4B888D7 /* Pods_DattingApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,16 +92,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		21205E0E23C78EED00C24008 /* Setting */ = {
+		21205E0E23C78EED00C24008 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
 				219A6FD323C6318600DCB91E /* AppDelegate.swift */,
 				219A6FD723C6318600DCB91E /* Main.storyboard */,
 				219A6FDA23C6318800DCB91E /* Assets.xcassets */,
 				219A6FDC23C6318800DCB91E /* LaunchScreen.storyboard */,
-				219A6FDF23C6318800DCB91E /* Info.plist */,
 			);
-			path = Setting;
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 		2123AC5F23C88D9B00880D9F /* Models */ = {
@@ -123,6 +127,8 @@
 			children = (
 				219A6FD223C6318600DCB91E /* DattingApp */,
 				219A6FD123C6318600DCB91E /* Products */,
+				9A6615470865D097295E96B5 /* Pods */,
+				22F88754A84EE539D80CD6E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,10 +148,28 @@
 				21205E0423C75CFB00C24008 /* Views */,
 				21205E0D23C78ED700C24008 /* Controllers */,
 				21205E0123C7571100C24008 /* Extensions */,
-				21205E0E23C78EED00C24008 /* Setting */,
+				219A6FDF23C6318800DCB91E /* Info.plist */,
+				21205E0E23C78EED00C24008 /* Supporting files */,
 				2125334323D1DF950091B733 /* Validation.swift */,
 			);
 			path = DattingApp;
+			sourceTree = "<group>";
+		};
+		22F88754A84EE539D80CD6E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E78953D435F1ABAC355712E4 /* Pods_DattingApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A6615470865D097295E96B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E606B46661850B7C8DBFB2D8 /* Pods-DattingApp.debug.xcconfig */,
+				B1C85AD22C697A03EF52A641 /* Pods-DattingApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 219A6FE223C6318800DCB91E /* Build configuration list for PBXNativeTarget "DattingApp" */;
 			buildPhases = (
+				CABA7ADCD2F1C1E1371788C3 /* [CP] Check Pods Manifest.lock */,
 				219A6FCC23C6318600DCB91E /* Sources */,
 				219A6FCD23C6318600DCB91E /* Frameworks */,
 				219A6FCE23C6318600DCB91E /* Resources */,
+				77A0EDAB75CDA2AAC57991C4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,6 +239,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		77A0EDAB75CDA2AAC57991C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DattingApp/Pods-DattingApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DattingApp/Pods-DattingApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DattingApp/Pods-DattingApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CABA7ADCD2F1C1E1371788C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DattingApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		219A6FCC23C6318600DCB91E /* Sources */ = {
@@ -376,11 +444,12 @@
 		};
 		219A6FE323C6318800DCB91E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E606B46661850B7C8DBFB2D8 /* Pods-DattingApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26399WDR22;
-				INFOPLIST_FILE = DattingApp/Setting/Info.plist;
+				INFOPLIST_FILE = DattingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,11 +463,12 @@
 		};
 		219A6FE423C6318800DCB91E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1C85AD22C697A03EF52A641 /* Pods-DattingApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26399WDR22;
-				INFOPLIST_FILE = DattingApp/Setting/Info.plist;
+				INFOPLIST_FILE = DattingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

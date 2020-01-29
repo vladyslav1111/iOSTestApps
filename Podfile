@@ -12,5 +12,6 @@ target 'DattingApp' do
   pod 'SDWebImage','~>4.4.2’
   pod 'JGProgressHUD','~>2.0.3'
   pod 'LBTATools'
+  pod 'RxSwift'
 
 end

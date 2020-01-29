@@ -7,31 +7,34 @@
 //
 
 import Foundation
+import RxSwift
 
 class RegistrationViewModel {
-    var fullName: String? {
-        didSet {
-            checkFormValidity()
-        }
-    }
-    var email: String? {
-        didSet {
-            checkFormValidity()
-        }
-    }
-    var password: String? {
-        didSet {
-            checkFormValidity()
-        }
-    }
+    let disposeBag = DisposeBag()
     
-    fileprivate func checkFormValidity() {
-        let nameValid = Validation.validateText(fullName ?? "")
-        let emailValid = Validation.validateEmail(email ?? "")
-        let passwordValid = Validation.validatePassword(password ?? "")
+    var fullName: PublishSubject<String?> = PublishSubject()
+    var email: PublishSubject<String?> = PublishSubject()
+    var password: PublishSubject<String?> = PublishSubject()
+    var isFormValidObserver: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+    
+    private var isValidFullName = false
+    private var isValidEmail = false
+    private var isValidPassword = false
+    
+    init() {
+        fullName.subscribe(onNext: {[weak self] (string) in
+            self?.isValidFullName = Validation.validateText(string ?? "")
+            self?.isFormValidObserver.onNext(self!.isValidFullName && self!.isValidPassword && self!.isValidEmail)
+        }).disposed(by: disposeBag)
         
-        isFormValidObserver?(nameValid && emailValid && passwordValid)
+        email.subscribe(onNext: {[weak self] (string) in
+            self?.isValidEmail = Validation.validateText(string ?? "")
+            self?.isFormValidObserver.onNext(self!.isValidFullName && self!.isValidPassword && self!.isValidEmail)
+        }).disposed(by: disposeBag)
+        
+        password.subscribe(onNext: {[weak self] (string) in
+            self?.isValidPassword = Validation.validateText(string ?? "")
+            self?.isFormValidObserver.onNext(self!.isValidFullName && self!.isValidPassword && self!.isValidEmail)
+        }).disposed(by: disposeBag)
     }
-    
-    var isFormValidObserver: ((Bool) -> ())?
 }

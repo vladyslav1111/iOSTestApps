@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import RxSwift
 
 class RegistrationController: UIViewController {
+    let disposeBag = DisposeBag()
 // MARK: Properties
     let edgeMargin: CGFloat = 50
     let texfieldPagging: CGFloat = 16
@@ -21,7 +23,6 @@ class RegistrationController: UIViewController {
     var viewModel = RegistrationViewModel()
     
 // MARK: Views
-
     let selectPhotoButton: UIButton = {
         let button = UIButton()
         button.setTitle("Select photo", for: .normal)
@@ -94,7 +95,7 @@ class RegistrationController: UIViewController {
     }
     
     func setViewModel() {
-        viewModel.isFormValidObserver = { [weak self] valid in
+        viewModel.isFormValidObserver.subscribe(onNext: { [weak self] valid in
             if valid {
                 self?.registerButton.isEnabled = true
                 UIView.animate(withDuration: 0.2) { [weak self] in
@@ -106,7 +107,7 @@ class RegistrationController: UIViewController {
                     self?.registerButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 }
             }
-        }
+        }).disposed(by: disposeBag)
     }
     
 // MARK: Stacks
@@ -150,15 +151,15 @@ class RegistrationController: UIViewController {
 // MARK: Handlers
     
     @objc fileprivate func handleTextFieldChanging(textField: UITextField) {
-        viewModel.fullName = textField.text
+        viewModel.fullName.onNext(textField.text)
     }
     
     @objc fileprivate func handleEmailTextFieldChanging(textField: UITextField) {
-        viewModel.email = textField.text
+        viewModel.email.onNext(textField.text)
     }
     
     @objc fileprivate func handlePasswordTextFieldChanging(textField: UITextField) {
-        viewModel.password = textField.text
+        viewModel.password.onNext(textField.text)
     }
     
     @objc fileprivate func handleTap() {
