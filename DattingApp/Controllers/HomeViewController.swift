@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func profileButtonPresed() {
-        let vc = RegistrationController()
+        let vc = RegistrationController(viewModel: RegistrationViewModel())
         self.present(vc, animated: true)
     }
     

@@ -17,6 +17,7 @@
 		2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6623C8AA3800880D9F /* Advertiser.swift */; };
 		2125334423D1DF950091B733 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125334323D1DF950091B733 /* Validation.swift */; };
 		2125334623D1EE550091B733 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125334523D1EE550091B733 /* RegistrationViewModel.swift */; };
+		2163307023E1D09800477EE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2163306F23E1D09800477EE2 /* GoogleService-Info.plist */; };
 		217ADFC423CF13B400DEE443 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC323CF13B400DEE443 /* HomeViewModel.swift */; };
 		217ADFC623CF331500DEE443 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC523CF331500DEE443 /* RegistrationController.swift */; };
 		217ADFC823CF334700DEE443 /* RegistrationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC723CF334700DEE443 /* RegistrationTextField.swift */; };
@@ -38,6 +39,7 @@
 		2123AC6623C8AA3800880D9F /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		2125334323D1DF950091B733 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		2125334523D1EE550091B733 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		2163306F23E1D09800477EE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		217ADFC323CF13B400DEE443 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		217ADFC523CF331500DEE443 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		217ADFC723CF334700DEE443 /* RegistrationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextField.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		219A6FD223C6318600DCB91E /* DattingApp */ = {
 			isa = PBXGroup;
 			children = (
+				2163306F23E1D09800477EE2 /* GoogleService-Info.plist */,
 				2123AC6323C89D0700880D9F /* ViewModels */,
 				2123AC5F23C88D9B00880D9F /* Models */,
 				21205E0423C75CFB00C24008 /* Views */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219A6FDE23C6318800DCB91E /* LaunchScreen.storyboard in Resources */,
+				2163307023E1D09800477EE2 /* GoogleService-Info.plist in Resources */,
 				219A6FDB23C6318800DCB91E /* Assets.xcassets in Resources */,
 				219A6FD923C6318600DCB91E /* Main.storyboard in Resources */,
 			);

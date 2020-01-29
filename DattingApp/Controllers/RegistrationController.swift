@@ -8,19 +8,17 @@
 
 import UIKit
 import RxSwift
+import JGProgressHUD
 
 class RegistrationController: UIViewController {
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 // MARK: Properties
-    let edgeMargin: CGFloat = 50
-    let texfieldPagging: CGFloat = 16
-    let topGragientColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
-    let buttomGradientColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    let gradient = CAGradientLayer()
-    var isValidName = false
-    var isValidEmail = false
-    var isValidPassword = false
-    var viewModel = RegistrationViewModel()
+    private let edgeMargin: CGFloat = 50
+    private let texfieldPagging: CGFloat = 16
+    private let topGragientColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+    private let buttomGradientColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+    private let gradient = CAGradientLayer()
+    private var viewModel: RegistrationViewModel
     
 // MARK: Views
     let selectPhotoButton: UIButton = {
@@ -62,13 +60,22 @@ class RegistrationController: UIViewController {
         button.layer.cornerRadius = 22
         button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-
+        button.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
         return button
     }()
     
 // MARK: Constraints
     lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
     lazy var selectPhotoButtonHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
+    
+    init(viewModel: RegistrationViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 // MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -95,7 +102,7 @@ class RegistrationController: UIViewController {
     }
     
     func setViewModel() {
-        viewModel.isFormValidObserver.subscribe(onNext: { [weak self] valid in
+        viewModel.isFormValidObservable.subscribe(onNext: { [weak self] valid in
             if valid {
                 self?.registerButton.isEnabled = true
                 UIView.animate(withDuration: 0.2) { [weak self] in
@@ -149,6 +156,21 @@ class RegistrationController: UIViewController {
     }
     
 // MARK: Handlers
+    
+    fileprivate func showHudWith(error: Error) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Registration failed"
+        hud.detailTextLabel.text = error.localizedDescription
+        hud.show(in: self.view)
+        hud.dismiss(afterDelay: 4)
+    }
+    
+    @objc fileprivate func registerButtonPressed() {
+        viewModel.createUser {[weak self] (error) in
+            guard let error = error else { return }
+            self?.showHudWith(error: error)
+        }
+    }
     
     @objc fileprivate func handleTextFieldChanging(textField: UITextField) {
         viewModel.fullName.onNext(textField.text)

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>50068096984-tnuip6v9c0s04v13cbq0gtn6c4fuptjn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.50068096984-tnuip6v9c0s04v13cbq0gtn6c4fuptjn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDoMmdZSVZGQnav6jcPRgsWE3o9Pl-4jYY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>50068096984</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.epam.vladyslav-tkachuk.DattingApp</string>
+	<key>PROJECT_ID</key>
+	<string>dattingapp-dff25</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dattingapp-dff25.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:50068096984:ios:6fbd74669423297abd94ad</string>
+	<key>DATABASE_URL</key>
+	<string>https://dattingapp-dff25.firebaseio.com</string>
+</dict>
+</plist>
