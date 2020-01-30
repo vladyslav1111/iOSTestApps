@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        window?.rootViewController = RegistrationController(viewModel: RegistrationViewModel())
+        let registerViewModel = RegistrationViewModel(storage: FirebaseFileStorageManager.instance)
+        window?.rootViewController = RegistrationController(viewModel: registerViewModel)
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         return true

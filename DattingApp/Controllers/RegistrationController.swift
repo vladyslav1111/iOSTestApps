@@ -19,6 +19,7 @@ class RegistrationController: UIViewController {
     private let buttomGradientColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     private let gradient = CAGradientLayer()
     private var viewModel: RegistrationViewModel
+    private let registerHUD = JGProgressHUD(style: .dark)
     
 // MARK: Views
     let selectPhotoButton: UIButton = {
@@ -28,6 +29,9 @@ class RegistrationController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(handleSelectingPhoto), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
         return button
     }()
 
@@ -78,6 +82,7 @@ class RegistrationController: UIViewController {
     }
     
 // MARK: ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let screenSize = UIScreen.main.bounds
@@ -87,13 +92,12 @@ class RegistrationController: UIViewController {
         setupLayout()
         setViewModel()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setupNotificationObservers()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+       // NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillLayoutSubviews() {
@@ -114,6 +118,13 @@ class RegistrationController: UIViewController {
                     self?.registerButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 }
             }
+        }).disposed(by: disposeBag)
+        
+        viewModel.image
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (image) in
+            guard let image = image else { return }
+            self?.selectPhotoButton.setImage(image, for: .normal)
         }).disposed(by: disposeBag)
     }
     
@@ -154,10 +165,23 @@ class RegistrationController: UIViewController {
             selectPhotoButtonHeightAnchor.isActive = true
         }
     }
-    
+}
 // MARK: Handlers
+private extension RegistrationController {
     
-    fileprivate func showHudWith(error: Error) {
+    func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func handleSelectingPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        self.present(imagePickerController, animated: true)
+    }
+    
+    func showHudWith(error: Error) {
+        registerHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Registration failed"
         hud.detailTextLabel.text = error.localizedDescription
@@ -165,34 +189,38 @@ class RegistrationController: UIViewController {
         hud.dismiss(afterDelay: 4)
     }
     
-    @objc fileprivate func registerButtonPressed() {
-        viewModel.createUser {[weak self] (error) in
-            guard let error = error else { return }
+    @objc func registerButtonPressed() {
+        registerHUD.show(in: self.view)
+        viewModel.registerUserButtonPressed {[weak self] (error) in
+            guard let error = error else {
+                self?.registerHUD.dismiss()
+                return
+            }
             self?.showHudWith(error: error)
         }
     }
     
-    @objc fileprivate func handleTextFieldChanging(textField: UITextField) {
+    @objc func handleTextFieldChanging(textField: UITextField) {
         viewModel.fullName.onNext(textField.text)
     }
     
-    @objc fileprivate func handleEmailTextFieldChanging(textField: UITextField) {
+    @objc func handleEmailTextFieldChanging(textField: UITextField) {
         viewModel.email.onNext(textField.text)
     }
     
-    @objc fileprivate func handlePasswordTextFieldChanging(textField: UITextField) {
+    @objc func handlePasswordTextFieldChanging(textField: UITextField) {
         viewModel.password.onNext(textField.text)
     }
     
-    @objc fileprivate func handleTap() {
+    @objc func handleTap() {
         view.endEditing(true)
     }
 
-    @objc fileprivate func handleKeyboardHide() {
+    @objc func handleKeyboardHide() {
         (self.view as! UIScrollView).contentSize = CGSize(width: view.bounds.width, height: view.bounds.height)
     }
 
-    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+    @objc func handleKeyboardShow(notification: Notification) {
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
         let buttomSpace = view.frame.height - (overallStackView.frame.origin.y + overallStackView.frame.height)
@@ -202,7 +230,7 @@ class RegistrationController: UIViewController {
     }
     
 // MARK: Setup layout
-    fileprivate func setupLayout() {
+    func setupLayout() {
         let someView = UIView()
         self.view.addSubview(someView)
         someView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
@@ -218,10 +246,22 @@ class RegistrationController: UIViewController {
         overallStackView.centerYAnchor.constraint(equalTo: someView.centerYAnchor).isActive = true
     }
 
-    fileprivate func setupGradientLayer() {
+    func setupGradientLayer() {
         gradient.colors = [topGragientColor.cgColor, buttomGradientColor.cgColor]
         gradient.locations = [0, 1]
         view.layer.addSublayer(gradient)
         gradient.frame = view.bounds
+    }
+}
+
+extension RegistrationController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        viewModel.image.onNext(image)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

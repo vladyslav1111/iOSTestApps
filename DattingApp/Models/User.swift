@@ -9,8 +9,11 @@
 import UIKit
 
 struct User{
-    let name: String
-    let profesion: String
-    let age: Int
-    let imageNames: [String]
+    var name: String
+    var profesion: String
+    var age: Int
+    var imageNames: [String]?
+    
+    let uid: String
+    var email: String
 }

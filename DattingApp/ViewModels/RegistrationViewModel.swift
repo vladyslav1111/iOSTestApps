@@ -8,17 +8,19 @@
 
 import Foundation
 import RxSwift
-import FirebaseAuth
+import Firebase
 
 class RegistrationViewModel {
     private let disposeBag = DisposeBag()
     
+    let image: PublishSubject<UIImage?> = PublishSubject()
     let fullName: PublishSubject<String?> = PublishSubject()
     let email: PublishSubject<String?> = PublishSubject()
     let password: PublishSubject<String?> = PublishSubject()
     private var isFormValid: BehaviorSubject<Bool> = BehaviorSubject(value: false)
     let isFormValidObservable: Observable<Bool>
     
+    private var uiImage: UIImage?
     private var fullNameStr: String?
     private var emailStr: String?
     private var passwordStr: String?
@@ -27,8 +29,15 @@ class RegistrationViewModel {
     private var isValidEmail = false
     private var isValidPassword = false
     
-    init() {
+    private let fileStorageManager: FileStorageManager
+    
+    init(storage: FileStorageManager) {
+        fileStorageManager = storage
         isFormValidObservable = isFormValid.asObserver()
+        image.subscribe(onNext: {[weak self] (image) in
+            self?.uiImage = image
+        }).disposed(by: disposeBag)
+        
         fullName.subscribe(onNext: {[weak self] (string) in
             self?.fullNameStr = string
             self?.isValidFullName = Validation.validateText(string ?? "")
@@ -48,11 +57,21 @@ class RegistrationViewModel {
         }).disposed(by: disposeBag)
     }
     
-    func createUser(completion: @escaping (Error?) -> ()) {
-        guard let fullName = fullNameStr, let email = emailStr, let password = passwordStr else { return completion(nil) }
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+    func registerUserButtonPressed(completion: @escaping (Error?) -> ()) {
+        guard let fullName = fullNameStr, let email = emailStr, let password = passwordStr else { return completion( RegistrationError.emptyFieldError) }
+        guard let uiImage = self.uiImage else { return completion(RegistrationError.notPickedImage)}
+        Auth.auth().createUser(withEmail: email, password: password) {[weak self] (result, error) in
             guard error == nil else { return completion(error) }
-            completion(nil)
+            guard result == nil else {
+                self?.fileStorageManager.saveImage(uiImage, withName: UUID().uuidString, completion: { error in
+                    guard error == nil else { return completion(error)}
+                    let uid = Auth.auth().currentUser?.uid ?? ""
+                    let data = ["fullName": fullName, "email": email, "uid": uid]
+                    Firestore.firestore().collection("users").document(uid).setData(data, completion: { completion($0) })
+                })
+                return
+            }
+            completion(RegistrationError.unknownError)
         }
     }
 }

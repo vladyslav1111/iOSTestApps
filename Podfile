@@ -8,6 +8,7 @@ target 'DattingApp' do
   pod 'Firebase/Auth’
   pod 'Firebase/Storage’
   pod 'Firebase/Core’
+  pod 'Firebase/Database'
   pod 'GoogleAppMeasurement'
   pod 'SDWebImage','~>4.4.2’
   pod 'JGProgressHUD','~>2.0.3'
