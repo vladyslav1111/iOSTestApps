@@ -35,7 +35,7 @@ class CardViewModel {
         imageIndexObservable.onNext(max(0, imageIndex - 1))
     }
     
-    init(user: User) {
+    init(user: CardUser) {
         imageNames = user.imageNames
         let attributedString = NSMutableAttributedString(string: user.name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
         attributedString.append(NSAttributedString(string: " \(user.age)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))

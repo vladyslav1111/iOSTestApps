@@ -19,7 +19,7 @@ enum RegistrationError: String, Error {
 
 class FireAuthManager {
     static let shared = FireAuthManager()
-    var currentUser: User?
+    var currentUser: CurrentUser?
     private init() {}
     private var fireUser: Firebase.User?
     private var fireCredential: Firebase.AuthCredential?
@@ -34,6 +34,8 @@ class FireAuthManager {
             guard let result = result else { return completion(RegistrationError.unknownError)}
             self?.fireUser = result.user
             self?.fireCredential = result.credential
+            self?.currentUser = CurrentUser(uid: result.user.uid, email: result.user.email)
+            completion(nil)
         }
     }
 }

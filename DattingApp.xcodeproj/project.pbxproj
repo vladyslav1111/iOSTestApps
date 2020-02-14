@@ -12,7 +12,7 @@
 		21205E0823C7654A00C24008 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21205E0723C7654A00C24008 /* TopNavigationStackView.swift */; };
 		21205E0A23C7744300C24008 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21205E0923C7744300C24008 /* CardView.swift */; };
 		21205E0C23C78EAA00C24008 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21205E0B23C78EAA00C24008 /* HomeViewController.swift */; };
-		2123AC6123C88DAA00880D9F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6023C88DAA00880D9F /* User.swift */; };
+		2123AC6123C88DAA00880D9F /* CardUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6023C88DAA00880D9F /* CardUser.swift */; };
 		2123AC6523C89D1A00880D9F /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6423C89D1A00880D9F /* CardViewModel.swift */; };
 		2123AC6723C8AA3800880D9F /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123AC6623C8AA3800880D9F /* Advertiser.swift */; };
 		2125334423D1DF950091B733 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125334323D1DF950091B733 /* Validation.swift */; };
@@ -21,6 +21,7 @@
 		2163307223E2F12D00477EE2 /* FirebaseFileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163307123E2F12D00477EE2 /* FirebaseFileStorageManager.swift */; };
 		2163307623E3146B00477EE2 /* FirebaseCloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163307523E3146B00477EE2 /* FirebaseCloudManager.swift */; };
 		2163307823E31D5F00477EE2 /* FireAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163307723E31D5F00477EE2 /* FireAuthManager.swift */; };
+		2163307A23E41AB300477EE2 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163307923E41AB300477EE2 /* CurrentUser.swift */; };
 		217ADFC423CF13B400DEE443 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC323CF13B400DEE443 /* HomeViewModel.swift */; };
 		217ADFC623CF331500DEE443 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC523CF331500DEE443 /* RegistrationController.swift */; };
 		217ADFC823CF334700DEE443 /* RegistrationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217ADFC723CF334700DEE443 /* RegistrationTextField.swift */; };
@@ -37,7 +38,7 @@
 		21205E0723C7654A00C24008 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		21205E0923C7744300C24008 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		21205E0B23C78EAA00C24008 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2123AC6023C88DAA00880D9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2123AC6023C88DAA00880D9F /* CardUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUser.swift; sourceTree = "<group>"; };
 		2123AC6423C89D1A00880D9F /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		2123AC6623C8AA3800880D9F /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		2125334323D1DF950091B733 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		2163307123E2F12D00477EE2 /* FirebaseFileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFileStorageManager.swift; sourceTree = "<group>"; };
 		2163307523E3146B00477EE2 /* FirebaseCloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCloudManager.swift; sourceTree = "<group>"; };
 		2163307723E31D5F00477EE2 /* FireAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAuthManager.swift; sourceTree = "<group>"; };
+		2163307923E41AB300477EE2 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		217ADFC323CF13B400DEE443 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		217ADFC523CF331500DEE443 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		217ADFC723CF334700DEE443 /* RegistrationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextField.swift; sourceTree = "<group>"; };
@@ -114,8 +116,9 @@
 		2123AC5F23C88D9B00880D9F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2123AC6023C88DAA00880D9F /* User.swift */,
+				2123AC6023C88DAA00880D9F /* CardUser.swift */,
 				2123AC6623C8AA3800880D9F /* Advertiser.swift */,
+				2163307923E41AB300477EE2 /* CurrentUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,7 +319,8 @@
 				2123AC6523C89D1A00880D9F /* CardViewModel.swift in Sources */,
 				21205E0A23C7744300C24008 /* CardView.swift in Sources */,
 				21205E0823C7654A00C24008 /* TopNavigationStackView.swift in Sources */,
-				2123AC6123C88DAA00880D9F /* User.swift in Sources */,
+				2163307A23E41AB300477EE2 /* CurrentUser.swift in Sources */,
+				2123AC6123C88DAA00880D9F /* CardUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

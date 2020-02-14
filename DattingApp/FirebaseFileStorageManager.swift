@@ -12,6 +12,7 @@ import Firebase
 protocol FileStorageManager {
     func saveFile(_ data: Data, to: String, withName: String, completion: @escaping (Error?)->Void)
     func saveImage(_ image: UIImage, withName name: String, completion: @escaping (Error?)->Void)
+    func downloadURL(withPath path: String, _ completion: @escaping (URL?, Error?)->Void)
 }
 
 class FirebaseFileStorageManager: FileStorageManager {
@@ -25,9 +26,11 @@ class FirebaseFileStorageManager: FileStorageManager {
     
     func saveFile(_ data: Data, to path: String, withName name: String, completion: @escaping (Error?)->Void) {
         let ref = Storage.storage().reference(withPath: "/\(path)/\(name)")
-        ref.putData(data, metadata: nil, completion: { (_, error) in
-            guard error == nil else { return completion(error) }
-            completion(nil)
-        })
+        ref.putData(data, metadata: nil, completion: { completion($1) })
+    }
+    
+    func downloadURL(withPath path: String, _ completion: @escaping (URL?, Error?)->Void) {
+        let ref = Storage.storage().reference(withPath: "/\(path))")
+        ref.downloadURL(completion: { completion($0, $1) })
     }
 }

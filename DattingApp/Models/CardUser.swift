@@ -8,12 +8,9 @@
 
 import UIKit
 
-struct User{
+struct CardUser{
     var name: String
     var profesion: String
     var age: Int
-    var imageNames: [String]?
-    
-    let uid: String
-    var email: String
+    var imageNames: [String]
 }

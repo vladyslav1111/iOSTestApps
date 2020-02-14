@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func profileButtonPresed() {
-        let vc = RegistrationController(viewModel: RegistrationViewModel())
+        let vc = RegistrationController(viewModel: RegistrationViewModel(storage: FirebaseFileStorageManager.instance))
         self.present(vc, animated: true)
     }
     
@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
     }
 
     fileprivate func setupLayout() {
+        view.backgroundColor = .white
         let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardDeckView, buttomStackView])
         overallStackView.axis = .vertical
         view.addSubview(overallStackView)

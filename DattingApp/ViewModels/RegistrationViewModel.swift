@@ -60,18 +60,17 @@ class RegistrationViewModel {
     func registerUserButtonPressed(completion: @escaping (Error?) -> ()) {
         guard let fullName = fullNameStr, let email = emailStr, let password = passwordStr else { return completion( RegistrationError.emptyFieldError) }
         guard let uiImage = self.uiImage else { return completion(RegistrationError.notPickedImage)}
-        Auth.auth().createUser(withEmail: email, password: password) {[weak self] (result, error) in
+        FireAuthManager.shared.registerUser(withEmail: email, password: password) { [weak self] (error) in
             guard error == nil else { return completion(error) }
-            guard result == nil else {
-                self?.fileStorageManager.saveImage(uiImage, withName: UUID().uuidString, completion: { error in
-                    guard error == nil else { return completion(error)}
+            let imgUid = UUID().uuidString
+            self?.fileStorageManager.saveImage(uiImage, withName: imgUid, completion: { [weak self] error in
+                guard error == nil else { return completion(error)}
+                self?.fileStorageManager.downloadURL(withPath: "/\(uiImage)/\(imgUid)", { (imageUrl, error) in
                     let uid = Auth.auth().currentUser?.uid ?? ""
-                    let data = ["fullName": fullName, "email": email, "uid": uid]
+                    let data = ["fullName": fullName, "email": email, "uid": uid, "imageUrl1": imageUrl?.absoluteString ?? ""]
                     Firestore.firestore().collection("users").document(uid).setData(data, completion: { completion($0) })
                 })
-                return
-            }
-            completion(RegistrationError.unknownError)
+            })
         }
     }
 }
